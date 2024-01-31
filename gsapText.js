@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
 
   // Link timelines to scroll position
-  function createScrollTrigger(triggerElement, timeline) {
+  function createScrollTrigger(triggerElement, timeline, triggerHeight) {
     // Reset tl when scroll out of view past bottom of screen
     ScrollTrigger.create({
       trigger: triggerElement,
@@ -19,12 +19,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // Play tl when scrolled into view (60% from top of screen)
     ScrollTrigger.create({
       trigger: triggerElement,
-      start: "top 60%",
+      start: triggerHeight,
       onEnter: () => timeline.play(),
     });
   }
 
   $("[words-slide-up]").each(function (index) {
+  let triggerHeight = $(this).attr("trigger-height");
     let animationDelay = parseFloat($(this).attr("delay"));
     let tl = gsap.timeline({ paused: true, delay: animationDelay });
     tl.from($(this).find(".word"), {
@@ -34,10 +35,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
       ease: "back.out(2)",
       stagger: { amount: 0.5 },
     });
-    createScrollTrigger($(this), tl);
+    createScrollTrigger($(this), tl, triggerHeight);
   });
 
   $("[words-rotate-in]").each(function (index) {
+  let triggerHeight = $(this).attr("trigger-height");
     let animationDelay = parseFloat($(this).attr("delay"));
     let tl = gsap.timeline({ paused: true, delay: animationDelay });
     tl.set($(this).find(".word"), { transformPerspective: 1000 });
@@ -47,10 +49,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
       ease: "power2.out",
       stagger: { amount: 0.6 },
     });
-    createScrollTrigger($(this), tl);
+    createScrollTrigger($(this), tl, triggerHeight);
   });
 
   $("[words-slide-from-right]").each(function (index) {
+  let triggerHeight = $(this).attr("trigger-height");
     let animationDelay = parseFloat($(this).attr("delay"));
     let tl = gsap.timeline({ paused: true, delay: animationDelay });
     tl.from($(this).find(".word"), {
@@ -60,10 +63,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
       ease: "power2.out",
       stagger: { amount: 0.2 },
     });
-    createScrollTrigger($(this), tl);
+    createScrollTrigger($(this), tl, triggerHeight);
   });
 
   $("[letters-slide-up]").each(function (index) {
+  let triggerHeight = $(this).attr("trigger-height");
     let animationDelay = parseFloat($(this).attr("delay"));
     let tl = gsap.timeline({ paused: true, delay: animationDelay });
     tl.from($(this).find(".char"), {
@@ -72,10 +76,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
       ease: "power1.out",
       stagger: { amount: 0.6 },
     });
-    createScrollTrigger($(this), tl);
+    createScrollTrigger($(this), tl, triggerHeight);
   });
 
   $("[letters-slide-down]").each(function (index) {
+  let triggerHeight = $(this).attr("trigger-height");
+  console.log(triggerHeight)
     let animationDelay = parseFloat($(this).attr("delay"));
     let tl = gsap.timeline({ paused: true, delay: animationDelay });
 
@@ -85,10 +91,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
       ease: "power1.out",
       stagger: { amount: 0.7 },
     });
-    createScrollTrigger($(this), tl);
+    createScrollTrigger($(this), tl, triggerHeight);
   });
 
   $("[letters-fade-in]").each(function (index) {
+  let triggerHeight = $(this).attr("trigger-height");
     let animationDelay = parseFloat($(this).attr("delay"));
     let tl = gsap.timeline({ paused: true, delay: animationDelay });
     tl.from($(this).find(".char"), {
@@ -97,10 +104,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
       ease: "power1.out",
       stagger: { amount: 0.8 },
     });
-    createScrollTrigger($(this), tl);
+    createScrollTrigger($(this), tl, triggerHeight);
   });
 
   $("[letters-fade-in-random]").each(function (index) {
+  let triggerHeight = $(this).attr("trigger-height");
     let animationDelay = parseFloat($(this).attr("delay"));
     let tl = gsap.timeline({ paused: true, delay: animationDelay });
     tl.from($(this).find(".char"), {
@@ -109,10 +117,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
       ease: "power1.out",
       stagger: { amount: 0.4, from: "random" },
     });
-    createScrollTrigger($(this), tl);
+    createScrollTrigger($(this), tl, triggerHeight);
   });
 
   $("[scrub-each-word]").each(function (index) {
+  
     let tl = gsap.timeline({
       scrollTrigger: {
         trigger: $(this),
