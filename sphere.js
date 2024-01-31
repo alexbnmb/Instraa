@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
         0.1,
         1000
       );
-      this.camera.position.set(0, 0, 4); // Adjust the Z-coordinate based on your design
+      this.camera.position.set(0, 0, 3.8); // Adjust the Z-coordinate based on your design
 
       this.scene = new THREE.Scene();
 
